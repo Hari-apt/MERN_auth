@@ -97,6 +97,9 @@ export const login = async (req, res) => {
             text: `Hey there, Welcome to Hyrup and get an intern as ease!!!, Successful Loginn with email: ${email}`
         }
 
+        res.status(201).json({success: true, msg: "Successfully registered"});
+
+
         await transporter.sendMail(mailOptions);
 
         return res.json({success: true, msg: "Successfully Logged in"})
