@@ -35,13 +35,17 @@ export const register = async (req, res)=>{
             maxAge: 7 * 24 * 60 * 60 * 1000
         });
 
+        res.status(201).json({success: true, msg: "Successfully registered"});
+
         const mailOptions = 
         {
             from: process.env.SENDER_MAIL,
             to: email,
             subject: 'Welcome to Hyrup',
-            text: `Hey there, Welcome to Hyrup and get an intern as ease!!!, Successful registeration with email: ${email}`
-        }
+            text: `Hey there, welcome to Hyrup! Registered with ${email}`
+        }.catch(err => {
+                console.error("Mail error:", err.message);
+            })
 
         await transporter.sendMail(mailOptions);
         
@@ -95,7 +99,9 @@ export const login = async (req, res) => {
             to: email,
             subject: 'Welcome to Hyrup',
             text: `Hey there, Welcome to Hyrup and get an intern as ease!!!, Successful Loginn with email: ${email}`
-        }
+        }.catch(err => {
+                console.error("Mail error:", err.message);
+            })
 
         res.status(201).json({success: true, msg: "Successfully registered"});
 
