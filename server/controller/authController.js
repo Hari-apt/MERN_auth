@@ -3,6 +3,7 @@ import bcrypt from 'bcryptjs'
 import jwt from "jsonwebtoken";
 import transporter from "../config/nodemailer.js";
 import { EMAIL_VERIFY_TEMPLATE, PASSWORD_RESET_TEMPLATE } from "../config/emailTemplates.js";
+import { resend } from "../config/nodemailer.js";
 
 export const register = async (req, res)=>{
 
@@ -104,10 +105,11 @@ export const login = async (req, res) => {
 
         /* res.status(201).json({success: true, msg: "Successfully Logged in"}); */
 
-
         await transporter.sendMail(mailOptions)
         .then(() => console.log("Mail sent"))
         .catch(err => console.error("Mail error:", err.message));
+
+        await resend.emails.send(mailOptions)
 
         return res.json({success: true, msg: "Successfully Logged in"})
 
