@@ -43,9 +43,8 @@ export const register = async (req, res)=>{
             to: email,
             subject: 'Welcome to Hyrup',
             text: `Hey there, welcome to Hyrup! Registered with ${email}`
-        }.catch(err => {
-                console.error("Mail error:", err.message);
-            })
+        }
+
 
         transporter.sendMail(mailOptions)
         .then(() => console.log("Mail sent"))
@@ -101,9 +100,7 @@ export const login = async (req, res) => {
             to: email,
             subject: 'Welcome to Hyrup',
             text: `Hey there, Welcome to Hyrup and get an intern as ease!!!, Successful Loginn with email: ${email}`
-        }.catch(err => {
-                console.error("Mail error:", err.message);
-            })
+        }
 
         res.status(201).json({success: true, msg: "Successfully Logged in"});
 
