@@ -145,7 +145,7 @@ export const sendVerifyOTP = async(req, res) => {
 
         if(!user)
         {
-            res.json({success: false, msg: 'User Not Found'})
+            return res.json({success: false, msg: 'User Not Found'})
         }
 
         if(user.isAccountVerified)
