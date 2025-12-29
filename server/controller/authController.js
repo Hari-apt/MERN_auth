@@ -47,7 +47,7 @@ export const register = async (req, res)=>{
                 console.error("Mail error:", err.message);
             })
 
-        await transporter.sendMail(mailOptions)
+        transporter.sendMail(mailOptions)
         .then(() => console.log("Mail sent"))
         .catch(err => console.error("Mail error:", err.message));
         
@@ -105,7 +105,7 @@ export const login = async (req, res) => {
                 console.error("Mail error:", err.message);
             })
 
-        res.status(201).json({success: true, msg: "Successfully registered"});
+        res.status(201).json({success: true, msg: "Successfully Logged in"});
 
 
         transporter.sendMail(mailOptions)
