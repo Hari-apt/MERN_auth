@@ -105,7 +105,7 @@ export const login = async (req, res) => {
         /* res.status(201).json({success: true, msg: "Successfully Logged in"}); */
 
 
-        transporter.sendMail(mailOptions)
+        await transporter.sendMail(mailOptions)
         .then(() => console.log("Mail sent"))
         .catch(err => console.error("Mail error:", err.message));
 
@@ -170,7 +170,7 @@ export const sendVerifyOTP = async(req, res) => {
             html: EMAIL_VERIFY_TEMPLATE.replace("{{otp}}", otp).replace("{{email}}", email)
         }
 
-        transporter.sendMail(mailOptions)
+        await transporter.sendMail(mailOptions)
         .then(() => console.log("Mail sent"))
         .catch(err => console.error("Mail error:", err.message));
 
